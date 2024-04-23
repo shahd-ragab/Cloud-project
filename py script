@@ -1,0 +1,29 @@
+import nltk
+from nltk.corpus import stopwords
+from collections import Counter
+
+# Download NLTK stopwords if not already downloaded
+nltk.download('stopwords')
+# Download NLTK tokenizers if not already downloaded
+nltk.download('punkt')
+
+# Read the contents of the file
+file_path = "random_paragraphs.txt"
+with open(file_path, "r") as file:
+    text = file.read()
+
+# Tokenize the text
+words = nltk.word_tokenize(text)
+
+# Remove stopwords
+stop_words = set(stopwords.words('english'))
+filtered_words = [word for word in words if word.lower() not in stop_words]
+
+# Count word frequency
+word_freq = Counter(filtered_words)
+
+
+# Display word frequency count
+print("Word Frequency Count:")
+for word, freq in word_freq.items():
+    print(f"{word}: {freq}")
